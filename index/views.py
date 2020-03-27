@@ -19,13 +19,16 @@ def about(request):
 def episode(request, id_episode):
     URL_pag = "https://rickandmortyapi.com/api/episode/" + str(id_episode)
     episodio = requests.get(URL_pag).json()
-    lista_personajes_finales = []
-    for personaje in episodio["characters"]:
-        URL_personaje = personaje
-        info_personaje = requests.get(URL_personaje).json()
-        personaje_final = {'id': info_personaje['id'], 'name': info_personaje['name']}
-        lista_personajes_finales.append(personaje_final)
-    episodio["personajes_finales"] = lista_personajes_finales
+    lista_personajes_finales = ''
+    print(episodio)
+    for elemento in episodio['characters']:
+        lista_elemento = elemento.split('/')[-1]
+        lista_personajes_finales += lista_elemento
+        lista_personajes_finales += ','
+    lista_personajes_finales = lista_personajes_finales[:-1]
+    URL_pag = "https://rickandmortyapi.com/api/character/" + lista_personajes_finales
+    characters = requests.get(URL_pag).json()
+    episodio["personajes_finales"] = characters
     informacion_final = [episodio]
     return render(request, 'episode.html', {"list": informacion_final})
 

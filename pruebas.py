@@ -65,22 +65,22 @@ import requests
 #print(personaje_final)
 
 
-texto = 'rick'
+#texto = 'rick'
 
-URL_character = 'https://rickandmortyapi.com/api/character/?name=' + str(texto)
+#URL_character = 'https://rickandmortyapi.com/api/character/?name=' + str(texto)
 #URL_location = 'https://rickandmortyapi.com/api/location/?name=' + str(texto)
 #URL_episode = 'https://rickandmortyapi.com/api/episode/?name=' + str(texto)
-json_character = requests.get(URL_character).json()
+#json_character = requests.get(URL_character).json()
 #json_location = requests.get(URL_location).json()
 #json_episode = requests.get(URL_episode).json()
 
 
-print(json_character)
+#print(json_character)
 
-if 'error' in json_character:
-    print("error")
-else:
-    print("ok")
+#if 'error' in json_character:
+#    print("error")
+#else:
+#    print("ok")
 
 #resultados_personaje = []
 #resultados_personaje += json_character['results']
@@ -90,3 +90,17 @@ else:
 #
 #
 #print(resultados_personaje)
+id_episode = 1
+URL_pag = "https://rickandmortyapi.com/api/episode/" + str(id_episode)
+episodio = requests.get(URL_pag).json()
+lista_personajes_finales = ''
+print(episodio)
+for elemento in episodio['characters']:
+    lista_elemento = elemento.split('/')[-1]
+    lista_personajes_finales +=lista_elemento
+    lista_personajes_finales += ','
+lista_personajes_finales = lista_personajes_finales[:-1]
+URL_pag = "https://rickandmortyapi.com/api/character/" + lista_personajes_finales
+characters = requests.get(URL_pag).json()
+episodio["personajes_finales"] = characters
+print(characters)
