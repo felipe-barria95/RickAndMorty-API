@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% include "header.html" %}
+    <h1>Ubiacion</h1>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Dimension</th>
+                <th>Residentes</th>
+
+            </tr>
+            {%for item in list%}
+            <tr>
+                <td>{{item.name}}</td>
+                <td>{{item.type}}</td>
+                <td>{{item.dimension}}</td>
+                <td>
+                {%for personaje in item.residentes_finales%}
+                    <td><a href="/character/{{personaje.id}}">{{personaje.name}}</a></td>
+                {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+</body>
+</html>

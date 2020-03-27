@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rick and Morty API</title>
+</head>
+<body>
+    {% include "header.html" %}
+    <h2>Capitulos:</h2>
+        <table>
+            <tr>
+                <th>Codigo Episodio</th>
+                <th>Nombre</th>
+                <th>Fecha Emision</th>
+
+            </tr>
+            {%for item in list%}
+            <tr>
+                <td>{{item.episode}}</td>
+                <td><a href = "/episode/{{item.id}}" >{{item.name}}</a></td>
+                <td>{{item.air_date}}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+</body>
+</html>

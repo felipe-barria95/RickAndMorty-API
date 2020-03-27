@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% include "header.html" %}
+    <h1>Capitulo</h1>
+        <table>
+            <tr>
+                <th>Codigo Episodio</th>
+                <th>Nombre</th>
+                <th>Fecha Emision</th>
+                <th>Personajes</th>
+
+            </tr>
+            {%for item in list%}
+            <tr>
+                <td>{{item.episode}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.air_date}}</td>
+                <td>
+                    <table>
+                        <tr>
+                            {%for personaje in item.personajes_finales%}
+                                <td><a href="/character/{{personaje.id}}">{{personaje.name}}</a></td>
+                            {% endfor %}
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+</body>
+</html>

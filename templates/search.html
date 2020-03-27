@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% include "header.html" %}
+    <h1>Resultados Busqueda:</h1>
+    <h2>Personajes</h2>
+        <table>
+            <tr>
+                <th>ID Personaje</th>
+                <th>Nombre Personaje</th>
+            </tr>
+            {%for item in lista_personajes%}
+            <tr>
+                <td>{{item.id}}</td>
+                <td><a href="/character/{{item.id}}">{{item.name}}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    <h2>Ubicaciones</h2>
+        <table>
+            <tr>
+                <th>ID Ubicacion</th>
+                <th>Nombre Ubicacion</th>
+            </tr>
+            {%for item in lista_ubicaciones%}
+            <tr>
+                <td>{{item.id}}</td>
+                <td><a href="/location/{{item.id}}">{{item.name}}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    <h2>Episodios</h2>
+        <table>
+            <tr>
+                <th>ID Episodio</th>
+                <th>Nombre Episodio</th>
+            </tr>
+            {%for item in lista_episodios%}
+            <tr>
+                <td>{{item.id}}</td>
+                <td><a href="/episode/{{item.id}}">{{item.name}}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+</body>
+</html>

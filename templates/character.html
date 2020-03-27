@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personaje</title>
+</head>
+<body>
+    {% include "header.html" %}
+    <h1>Personaje</h1>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Status</th>
+                <th>Especie</th>
+                <th>Tipo</th>
+                <th>Genero</th>
+                <th>Origen</th>
+                <th>Ubiacion</th>
+                <th>Imagen</th>
+                <th>Episodio</th>
+            </tr>
+            {%for item in list%}
+            <tr>
+                <td>{{item.name}}</td>
+                <td>{{item.status}}</td>
+                <td>{{item.species}}</td>
+                <td>{{item.type}}</td>
+                <td>{{item.gender}}</td>
+                <td><a href="/location/{{item.origin.id}}">{{item.origin.name}}</a></td>
+                <td><a href="/location/{{item.location.id}}">{{item.location.name}}</a></td>
+                <td><img src="{{item.image}}" alt="{{item.name}}"></td>
+                {%for episodio in item.episodios_final%}
+                    <td><a href="/episode/{{episodio.id}}">{{episodio.name}}</a></td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+
+        </table>
+</body>
+</html>
