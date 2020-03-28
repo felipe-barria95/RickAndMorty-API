@@ -27,6 +27,8 @@ def episode(request, id_episode):
     lista_personajes_finales = lista_personajes_finales[:-1]
     URL_pag = "https://rickandmortyapi.com/api/character/" + lista_personajes_finales
     characters = requests.get(URL_pag).json()
+    if type(characters) is dict:
+        characters = [characters]
     episodio["personajes_finales"] = characters
     informacion_final = episodio
     return render(request, 'episode.html', {"list": informacion_final})
@@ -42,6 +44,8 @@ def character(request, id_character):
     lista_episodios_finales = lista_episodios_finales[:-1]
     URL_pag = "https://rickandmortyapi.com/api/episode/" + lista_episodios_finales
     episodes = requests.get(URL_pag).json()
+    if type(episodes) is dict:
+        episodes = [episodes]
     personaje['episodios_final'] = episodes
     personaje_final = personaje
     return render(request, 'character.html', {"list": personaje_final})

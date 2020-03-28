@@ -28,16 +28,14 @@
                 <td><a href="/location/{{list.origin.id}}">{{list.origin.name}}</a></td>
                 <td><a href="/location/{{list.location.id}}">{{list.location.name}}</a></td>
                 <td><img src="{{list.image}}" alt="{{list.name}}"></td>
-                <td>
-                    <table>
-                        <tr>
-                            {%for episodio in list.episodios_final%}
-                                <td><a href="/episode/{{episodio.id}}">{{episodio.name}}</a></td>
-                            {% endfor %}
-                        </tr>
-                    </table>
-                </td>
+                {%for episodio in list.episodios_final%}
+                    <td><a href="">{{episodio.name}}</a></td>
+                {% endfor %}
             </tr>
         </table>
 </body>
 </html>
+
+
+
+

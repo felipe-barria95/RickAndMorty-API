@@ -104,7 +104,7 @@ import requests
 #characters = requests.get(URL_pag).json()
 #episodio["personajes_finales"] = characters
 #print(characters)
-id_character = 5
+id_character = 223
 
 
 
@@ -121,7 +121,7 @@ URL_pag = "https://rickandmortyapi.com/api/episode/" + lista_episodios_finales
 episodes = requests.get(URL_pag).json()
 personaje['episodios_final'] = episodes
 personaje_final = personaje
-print(personaje_final)
+print(type(personaje_final)is dict)
 id_episode = 1
 
 URL_pag = "https://rickandmortyapi.com/api/episode/" + str(id_episode)
