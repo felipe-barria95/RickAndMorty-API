@@ -19,22 +19,25 @@
                 <th>Imagen</th>
                 <th>Episodio</th>
             </tr>
-            {%for item in list%}
             <tr>
-                <td>{{item.name}}</td>
-                <td>{{item.status}}</td>
-                <td>{{item.species}}</td>
-                <td>{{item.type}}</td>
-                <td>{{item.gender}}</td>
-                <td><a href="/location/{{item.origin.id}}">{{item.origin.name}}</a></td>
-                <td><a href="/location/{{item.location.id}}">{{item.location.name}}</a></td>
-                <td><img src="{{item.image}}" alt="{{item.name}}"></td>
-                {%for episodio in item.episodios_final%}
-                    <td><a href="/episode/{{episodio.id}}">{{episodio.name}}</a></td>
-                {% endfor %}
+                <td>{{list.name}}</td>
+                <td>{{list.status}}</td>
+                <td>{{list.species}}</td>
+                <td>{{list.type}}</td>
+                <td>{{list.gender}}</td>
+                <td><a href="/location/{{list.origin.id}}">{{list.origin.name}}</a></td>
+                <td><a href="/location/{{list.location.id}}">{{list.location.name}}</a></td>
+                <td><img src="{{list.image}}" alt="{{list.name}}"></td>
+                <td>
+                    <table>
+                        <tr>
+                            {%for episodio in list.episodios_final%}
+                                <td><a href="/episode/{{episodio.id}}">{{episodio.name}}</a></td>
+                            {% endfor %}
+                        </tr>
+                    </table>
+                </td>
             </tr>
-            {% endfor %}
-
         </table>
 </body>
 </html>

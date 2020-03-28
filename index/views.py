@@ -20,7 +20,6 @@ def episode(request, id_episode):
     URL_pag = "https://rickandmortyapi.com/api/episode/" + str(id_episode)
     episodio = requests.get(URL_pag).json()
     lista_personajes_finales = ''
-    print(episodio)
     for elemento in episodio['characters']:
         lista_elemento = elemento.split('/')[-1]
         lista_personajes_finales += lista_elemento
@@ -29,27 +28,22 @@ def episode(request, id_episode):
     URL_pag = "https://rickandmortyapi.com/api/character/" + lista_personajes_finales
     characters = requests.get(URL_pag).json()
     episodio["personajes_finales"] = characters
-    informacion_final = [episodio]
+    informacion_final = episodio
     return render(request, 'episode.html', {"list": informacion_final})
 
 def character(request, id_character):
     URL_pag = "https://rickandmortyapi.com/api/character/" + str(id_character)
     personaje = requests.get(URL_pag).json()
-    url_location = personaje['location']['url']
-    url_location = str(url_location)
-    url = url_location.split("/")
-    personaje['location']['id'] = url[-1]
-    url_origin = personaje['origin']['url']
-    url_origin = str(url_origin)
-    url = url_origin.split("/")
-    personaje['origin']['id'] = url[-1]
-    lista_episodes_final = []
-    for url in personaje['episode']:
-        episode = requests.get(url).json()
-        episode_final = {'id': episode['id'], 'name': episode['name']}
-        lista_episodes_final.append(episode_final)
-    personaje['episodios_final'] = lista_episodes_final
-    personaje_final = [personaje]
+    lista_episodios_finales = ''
+    for elemento in personaje['episode']:
+        lista_elemento = elemento.split('/')[-1]
+        lista_episodios_finales += lista_elemento
+        lista_episodios_finales += ','
+    lista_episodios_finales = lista_episodios_finales[:-1]
+    URL_pag = "https://rickandmortyapi.com/api/episode/" + lista_episodios_finales
+    episodes = requests.get(URL_pag).json()
+    personaje['episodios_final'] = episodes
+    personaje_final = personaje
     return render(request, 'character.html', {"list": personaje_final})
 
 def location(request, id_location):

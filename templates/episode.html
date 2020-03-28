@@ -15,22 +15,20 @@
                 <th>Personajes</th>
 
             </tr>
-            {%for item in list%}
             <tr>
-                <td>{{item.episode}}</td>
-                <td>{{item.name}}</td>
-                <td>{{item.air_date}}</td>
+                <td>{{list.episode}}</td>
+                <td>{{list.name}}</td>
+                <td>{{list.air_date}}</td>
                 <td>
                     <table>
                         <tr>
-                            {%for personaje in item.personajes_finales%}
+                            {%for personaje in list.personajes_finales%}
                                 <td><a href="/character/{{personaje.id}}">{{personaje.name}}</a></td>
                             {% endfor %}
                         </tr>
                     </table>
                 </td>
             </tr>
-            {% endfor %}
 
         </table>
 </body>
