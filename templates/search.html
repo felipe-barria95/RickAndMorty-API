@@ -1,50 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+	<title>Table V01</title>
+	{% load static %}
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static "images/icons/favicon.ico" %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static "vendor/bootstrap/css/bootstrap.min.css" %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static "fonts/font-awesome-4.7.0/css/font-awesome.min.css" %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static "vendor/animate/animate.css" %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static "vendor/select2/select2.min.css" %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static "vendor/perfect-scrollbar/perfect-scrollbar.css" %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static "css/util.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}">
+<!--===============================================================================================-->
 </head>
 <body>
-    {% include "header.html" %}
-    <h1>Resultados Busqueda:</h1>
-    <h2>Personajes</h2>
-        <table>
-            <tr>
-                <th>ID Personaje</th>
-                <th>Nombre Personaje</th>
-            </tr>
-            {%for item in lista_personajes%}
-            <tr>
-                <td>{{item.id}}</td>
-                <td><a href="/character/{{item.id}}">{{item.name}}</a></td>
-            </tr>
-            {% endfor %}
-        </table>
-    <h2>Ubicaciones</h2>
-        <table>
-            <tr>
-                <th>ID Ubicacion</th>
-                <th>Nombre Ubicacion</th>
-            </tr>
-            {%for item in lista_ubicaciones%}
-            <tr>
-                <td>{{item.id}}</td>
-                <td><a href="/location/{{item.id}}">{{item.name}}</a></td>
-            </tr>
-            {% endfor %}
-        </table>
-    <h2>Episodios</h2>
-        <table>
-            <tr>
-                <th>ID Episodio</th>
-                <th>Nombre Episodio</th>
-            </tr>
-            {%for item in lista_episodios%}
-            <tr>
-                <td>{{item.id}}</td>
-                <td><a href="/episode/{{item.id}}">{{item.name}}</a></td>
-            </tr>
-            {% endfor %}
-        </table>
+	<div class="limiter">
+		{% include "header.html" %}
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100">
+					<h1>Resultados Personaje</h1>
+					<table>
+						<thead>
+							<tr class="table100-head">
+								<th class="column3">ID Personaje</th>
+								<th class="column3">Nombre Personaje</th>
+							</tr>
+						</thead>
+						<tbody>
+							{%for item in lista_personajes%}
+								<tr>
+									<td class="column3">{{item.id}}</td>
+									<td class="column3"><a href="/character/{{item.id}}">{{item.name}}</a></td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+				<div class="table100">
+					<h1>Resultados Ubicaciones</h1>
+					<table>
+						<thead>
+							<tr class="table100-head">
+								<th class="column3">ID Ubicacion</th>
+								<th class="column3">Nombre Ubicacion</th>
+							</tr>
+						</thead>
+						<tbody>
+							{%for item in lista_ubicaciones%}
+								<tr>
+									<td class="column3">{{item.id}}</td>
+									<td class="column3"><a href="/location/{{item.id}}">{{item.name}}</a></td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+				<div class="table100">
+					<h1>Resultados Episodios</h1>
+					<table>
+						<thead>
+							<tr class="table100-head">
+								<th class="column3">ID Episodio</th>
+								<th class="column3">Nombre Episodio</th>
+							</tr>
+						</thead>
+						<tbody>
+							{%for item in lista_episodios%}
+								<tr>
+									<td class="column3">{{item.id}}</td>
+									<td class="column3"><a href="/episode/{{item.id}}">{{item.name}}</a></td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
 </body>
 </html>
