@@ -5,7 +5,6 @@
     <title>Title</title>
 </head>
 <body>
-    {% include "header.html" %}
     <h1>Ubiacion</h1>
         <table>
             <tr>
@@ -15,19 +14,16 @@
                 <th>Residentes</th>
 
             </tr>
-            {%for item in list%}
             <tr>
-                <td>{{item.name}}</td>
-                <td>{{item.type}}</td>
-                <td>{{item.dimension}}</td>
+                <td>{{list.name}}</td>
+                <td>{{list.type}}</td>
+                <td>{{list.dimension}}</td>
                 <td>
-                {%for personaje in item.residentes_finales%}
+                {%for personaje in list.personajes_final%}
                     <td><a href="/character/{{personaje.id}}">{{personaje.name}}</a></td>
                 {% endfor %}
                 </td>
             </tr>
-            {% endfor %}
-
         </table>
 </body>
 </html>

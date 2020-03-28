@@ -104,35 +104,71 @@ import requests
 #characters = requests.get(URL_pag).json()
 #episodio["personajes_finales"] = characters
 #print(characters)
-id_character = 223
+id_character = 2
 
+#URL_pag = "https://rickandmortyapi.com/api/character/" + str(id_character)
+#personaje = requests.get(URL_pag).json()
+#lista_episodios_finales = ''
+#for elemento in personaje['episode']:
+#    lista_elemento = elemento.split('/')[-1]
+#    lista_episodios_finales += lista_elemento
+#    lista_episodios_finales += ','
+#lista_episodios_finales = lista_episodios_finales[:-1]
+#URL_pag = "https://rickandmortyapi.com/api/episode/" + lista_episodios_finales
+#episodes = requests.get(URL_pag).json()
+#if type(episodes) is dict:
+#    episodes = [episodes]
+#personaje['episodios_final'] = episodes
+#personaje_final = personaje
+#id_location = personaje_final['location']['url'].split('/')[-1]
+#id_origin = personaje_final['origin']['url'].split('/')[-1]
+#personaje_final['location']['id'] = id_location
+#personaje_final['origin']['id'] = id_origin
 
+#print(personaje_final)
 
 URL_pag = "https://rickandmortyapi.com/api/character/" + str(id_character)
 personaje = requests.get(URL_pag).json()
-
 lista_episodios_finales = ''
 for elemento in personaje['episode']:
     lista_elemento = elemento.split('/')[-1]
-    lista_episodios_finales +=lista_elemento
+    lista_episodios_finales += lista_elemento
     lista_episodios_finales += ','
 lista_episodios_finales = lista_episodios_finales[:-1]
 URL_pag = "https://rickandmortyapi.com/api/episode/" + lista_episodios_finales
 episodes = requests.get(URL_pag).json()
+if type(episodes) is dict:
+    episodes = [episodes]
 personaje['episodios_final'] = episodes
 personaje_final = personaje
-print(type(personaje_final)is dict)
-id_episode = 1
+id_location = personaje_final['location']['url'].split('/')[-1]
+id_origin = personaje_final['origin']['url'].split('/')[-1]
+personaje_final['location']['id'] = id_location
+if id_origin == '':
+    personaje_final['origin']['id'] = 0
+else:
+    personaje_final['origin']['id'] = id_origin
+#return render(request, 'character.html', {"list": personaje_final})
 
-URL_pag = "https://rickandmortyapi.com/api/episode/" + str(id_episode)
-episodio = requests.get(URL_pag).json()
+
+
+URL_pag = "https://rickandmortyapi.com/api/location/" + str(id_location)
+ubicacion = requests.get(URL_pag).json()
 lista_personajes_finales = ''
-for elemento in episodio['characters']:
+for elemento in ubicacion['residents']:
     lista_elemento = elemento.split('/')[-1]
     lista_personajes_finales += lista_elemento
     lista_personajes_finales += ','
 lista_personajes_finales = lista_personajes_finales[:-1]
 URL_pag = "https://rickandmortyapi.com/api/character/" + lista_personajes_finales
-characters = requests.get(URL_pag).json()
-episodio["personajes_finales"] = characters
-informacion_final = episodio
+personajes  = requests.get(URL_pag).json()
+if type(personajes) is dict:
+    personajes = [personaje]
+ubicacion['personajes_final'] = personajes
+print(ubicacion)
+
+
+
+
+
+#return render(request, 'location.html', {"list": ubicacion_final})
