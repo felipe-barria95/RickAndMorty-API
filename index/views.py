@@ -9,9 +9,10 @@ def index(request):
         response = requests.get(URL_pag).json()
         episodios.append(response['results'])
         URL_pag = response['info']['next']
-
-    episodios = episodios[0] + episodios[1]
-    return render(request, 'index.html', {"list": episodios})
+    episodios_final = []
+    for elemento in episodios:
+        episodios_final += elemento
+    return render(request, 'index.html', {"list": episodios_final})
 
 def about(request):
     return render(request, 'about.html')
@@ -107,4 +108,3 @@ def search(request, texto):
             json_episode = requests.get(json_episode['info']['next']).json()
             resultados_episodio += json_episode['results']
     return render(request, 'search.html', {"lista_personajes": resultados_personaje, "lista_episodios": resultados_episodio, "lista_ubicaciones": resultados_ubicacion},)
-
