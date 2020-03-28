@@ -1,41 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Personaje</title>
+	<title>Table V01</title>
+	{% load static %}
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static "images/icons/favicon.ico" %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static "vendor/bootstrap/css/bootstrap.min.css" %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static "fonts/font-awesome-4.7.0/css/font-awesome.min.css" %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static "vendor/animate/animate.css" %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static "vendor/select2/select2.min.css" %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static "vendor/perfect-scrollbar/perfect-scrollbar.css" %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static "css/util.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}">
+<!--===============================================================================================-->
 </head>
 <body>
-    {% include "header.html" %}
-    <h1>Personaje</h1>
-        <table>
-            <tr>
-                <th>Nombre</th>
-                <th>Status</th>
-                <th>Especie</th>
-                <th>Tipo</th>
-                <th>Genero</th>
-                <th>Origen</th>
-                <th>Ubiacion</th>
-                <th>Imagen</th>
-                <th>Episodio</th>
-            </tr>
-            <tr>
-                <td>{{list.name}}</td>
-                <td>{{list.status}}</td>
-                <td>{{list.species}}</td>
-                <td>{{list.type}}</td>
-                <td>{{list.gender}}</td>
-                <td><a href="/location/{{list.origin.id}}">{{list.origin.name}}</a></td>
-                <td><a href="/location/{{list.location.id}}">{{list.location.name}}</a></td>
-                <td><img src="{{list.image}}" alt="{{list.name}}"></td>
-                {%for episodio in list.episodios_final%}
-                    <td><a href="/episode/{{episodio.id}}">{{episodio.name}}</a></td>
-                {% endfor %}
-            </tr>
-        </table>
+	<div class="limiter">
+		{% include "header.html" %}
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100">
+					<h1>Personaje</h1>
+					<h1>Nombre: {{list.name}}</h1>
+					<h1>Status: {{list.status}}</h1>
+					<h1>Especie: {{list.species}}</h1>
+					<h1>Tipo: {{list.typee}}</h1>
+					<h1>Genero: {{list.gender}}</h1>
+					<h1>Origen: <a href="/location/{{list.origin.id}}">{{list.origin.name}}</a></h1>
+					<h1>Ubicacion: <a href="/location/{{list.location.id}}">{{list.location.name}}</a></h1>
+					<h1><img src="{{list.image}}" alt="{{list.name}}"></h1>
+					<table>
+						<thead>
+							<tr class="table100-head">
+								<th class="column3">Episodios</th>
+							</tr>
+						</thead>
+						<tbody>
+							{%for episodio in list.episodios_final%}
+								<tr>
+									<td class="column3"><a href="/episode/{{episodio.id}}">{{episodio.name}}</a></td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
 </body>
 </html>
-
-
-
-

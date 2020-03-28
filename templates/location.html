@@ -1,29 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+	<title>Table V01</title>
+	{% load static %}
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static "images/icons/favicon.ico" %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static "vendor/bootstrap/css/bootstrap.min.css" %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static "fonts/font-awesome-4.7.0/css/font-awesome.min.css" %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static "vendor/animate/animate.css" %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static "vendor/select2/select2.min.css" %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static "vendor/perfect-scrollbar/perfect-scrollbar.css" %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static "css/util.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}">
+<!--===============================================================================================-->
 </head>
 <body>
-    <h1>Ubiacion</h1>
-        <table>
-            <tr>
-                <th>Nombre</th>
-                <th>Tipo</th>
-                <th>Dimension</th>
-                <th>Residentes</th>
+	<div class="limiter">
+		{% include "header.html" %}
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100">
+					<h1>Lugar</h1>
+					<h1>Nombre: {{list.name}}</h1>
+					<h1>Tipo: {{list.type}}</h1>
+					<h1>Dimension: {{list.dimension}}</h1>
+					<table>
+						<thead>
+							<tr class="table100-head">
+								<th class="column3">Residentes</th>
+							</tr>
+						</thead>
+						<tbody>
+							{%for personaje in list.personajes_final%}
+								<tr>
+									<td class="column3"><a href="/character/{{personaje.id}}">{{personaje.name}}</a></td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 
-            </tr>
-            <tr>
-                <td>{{list.name}}</td>
-                <td>{{list.type}}</td>
-                <td>{{list.dimension}}</td>
-                <td>
-                {%for personaje in list.personajes_final%}
-                    <td><a href="/character/{{personaje.id}}">{{personaje.name}}</a></td>
-                {% endfor %}
-                </td>
-            </tr>
-        </table>
+
+
+
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
 </body>
 </html>
