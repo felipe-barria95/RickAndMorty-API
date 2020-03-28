@@ -29,7 +29,7 @@
                 <td><a href="/location/{{list.location.id}}">{{list.location.name}}</a></td>
                 <td><img src="{{list.image}}" alt="{{list.name}}"></td>
                 {%for episodio in list.episodios_final%}
-                    <td><a href="">{{episodio.name}}</a></td>
+                    <td><a href="/episode/{{episodio.id}}">{{episodio.name}}</a></td>
                 {% endfor %}
             </tr>
         </table>

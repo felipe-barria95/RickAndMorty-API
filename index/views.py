@@ -84,6 +84,7 @@ def search(request, texto):
         while json_character['info']['next'] != '':
             json_character = requests.get(json_character['info']['next']).json()
             resultados_personaje += json_character['results']
+
     URL_location = 'https://rickandmortyapi.com/api/location/?name=' + str(texto)
     json_location = requests.get(URL_location).json()
     resultados_ubicacion = []
@@ -94,6 +95,7 @@ def search(request, texto):
         while json_location['info']['next'] != '':
             json_location = requests.get(json_location['info']['next']).json()
             resultados_ubicacion += json_location['results']
+
     URL_episode = 'https://rickandmortyapi.com/api/episode/?name=' + str(texto)
     json_episode = requests.get(URL_episode).json()
     resultados_episodio = []
