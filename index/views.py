@@ -1,10 +1,10 @@
 from django.shortcuts import render
 import requests
 
-
+URL_PAG_INICIAL = "https://integracion-rick-morty-api.herokuapp.com/api"
 def index(request):
     episodios = []
-    URL_pag = "https://rickandmortyapi.com/api/episode/?page=1"
+    URL_pag = URL_PAG_INICIAL + "/episode/?page=1"
     while URL_pag != "":
         response = requests.get(URL_pag).json()
         episodios.append(response['results'])
@@ -18,7 +18,7 @@ def about(request):
     return render(request, 'about.html')
 
 def episode(request, id_episode):
-    URL_pag = "https://rickandmortyapi.com/api/episode/" + str(id_episode)
+    URL_pag = URL_PAG_INICIAL + "/episode/" + str(id_episode)
     episodio = requests.get(URL_pag).json()
     lista_personajes_finales = ''
     for elemento in episodio['characters']:
@@ -26,7 +26,7 @@ def episode(request, id_episode):
         lista_personajes_finales += lista_elemento
         lista_personajes_finales += ','
     lista_personajes_finales = lista_personajes_finales[:-1]
-    URL_pag = "https://rickandmortyapi.com/api/character/" + lista_personajes_finales
+    URL_pag = URL_PAG_INICIAL + "/character/" + lista_personajes_finales
     characters = requests.get(URL_pag).json()
     if type(characters) is dict:
         characters = [characters]
@@ -35,7 +35,7 @@ def episode(request, id_episode):
     return render(request, 'episode.html', {"list": informacion_final})
 
 def character(request, id_character):
-    URL_pag = "https://rickandmortyapi.com/api/character/" + str(id_character)
+    URL_pag = URL_PAG_INICIAL + "/character/" + str(id_character)
     personaje = requests.get(URL_pag).json()
     lista_episodios_finales = ''
     for elemento in personaje['episode']:
@@ -43,7 +43,7 @@ def character(request, id_character):
         lista_episodios_finales += lista_elemento
         lista_episodios_finales += ','
     lista_episodios_finales = lista_episodios_finales[:-1]
-    URL_pag = "https://rickandmortyapi.com/api/episode/" + lista_episodios_finales
+    URL_pag = URL_PAG_INICIAL + "/episode/" + lista_episodios_finales
     episodes = requests.get(URL_pag).json()
     if type(episodes) is dict:
         episodes = [episodes]
@@ -59,7 +59,7 @@ def character(request, id_character):
     return render(request, 'character.html', {"list": personaje_final})
 
 def location(request, id_location):
-    URL_pag = "https://rickandmortyapi.com/api/location/" + str(id_location)
+    URL_pag = URL_PAG_INICIAL + "/location/" + str(id_location)
     ubicacion = requests.get(URL_pag).json()
     lista_personajes_finales = ''
     for elemento in ubicacion['residents']:
@@ -67,7 +67,7 @@ def location(request, id_location):
         lista_personajes_finales += lista_elemento
         lista_personajes_finales += ','
     lista_personajes_finales = lista_personajes_finales[:-1]
-    URL_pag = "https://rickandmortyapi.com/api/character/" + lista_personajes_finales
+    URL_pag = URL_PAG_INICIAL + "/character/" + lista_personajes_finales
     personajes = requests.get(URL_pag).json()
     if type(personajes) is dict:
         personajes = [personajes]
@@ -75,7 +75,7 @@ def location(request, id_location):
     return render(request, 'location.html', {"list": ubicacion})
 
 def search(request, texto):
-    URL_character = 'https://rickandmortyapi.com/api/character/?name=' + str(texto)
+    URL_character = URL_PAG_INICIAL + '/character/?name=' + str(texto)
     json_character = requests.get(URL_character).json()
     resultados_personaje = []
     if 'error' in json_character:
@@ -86,7 +86,7 @@ def search(request, texto):
             json_character = requests.get(json_character['info']['next']).json()
             resultados_personaje += json_character['results']
 
-    URL_location = 'https://rickandmortyapi.com/api/location/?name=' + str(texto)
+    URL_location = URL_PAG_INICIAL + '/location/?name=' + str(texto)
     json_location = requests.get(URL_location).json()
     resultados_ubicacion = []
     if 'error' in json_location:
@@ -97,7 +97,7 @@ def search(request, texto):
             json_location = requests.get(json_location['info']['next']).json()
             resultados_ubicacion += json_location['results']
 
-    URL_episode = 'https://rickandmortyapi.com/api/episode/?name=' + str(texto)
+    URL_episode = URL_PAG_INICIAL + '/episode/?name=' + str(texto)
     json_episode = requests.get(URL_episode).json()
     resultados_episodio = []
     if 'error' in json_episode:
