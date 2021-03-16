@@ -3,3 +3,5 @@ bin/
 lib/
 pyvenv.cfg
 .DS_Store
+index/__pycache__/
+tarea_1/__pycache__/
