@@ -1,7 +1,6 @@
-# Readme de la T01 de Taller de Integración
+# T01 Readme
 ## Powered by Django
 
-Todos los *views* necesarios como los *templates* estan en la carpeta index y
-templates respectivamente. La carpeta *polls*  y todo el contenido en su interior
-no tiene ninguna utilidad para esta tarea.
-Template de la tabla extraido de [ColorLib](https://colorlib.com/wp/template/responsive-table-v1/)
+Small API powered website that displays information about the programming of chapters, characters and places of Rick & Morty using Django.
+API consumtion from [Rick & Morty API](https://rickandmortyapi.com/documentation)
+Template extracted from [ColorLib](https://colorlib.com/wp/template/responsive-table-v1/)
