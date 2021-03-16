@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import requests
 
-URL_PAG_INICIAL = "https://integracion-rick-morty-api.herokuapp.com/api"
+URL_PAG_INICIAL = "https://rickandmortyapi.com/api"
 def index(request):
     episodios = []
     URL_pag = URL_PAG_INICIAL + "/episode/?page=1"
