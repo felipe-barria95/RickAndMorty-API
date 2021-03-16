@@ -2,10 +2,11 @@ from django.shortcuts import render
 import requests
 
 URL_PAG_INICIAL = "https://rickandmortyapi.com/api"
+
 def index(request):
     episodios = []
     URL_pag = URL_PAG_INICIAL + "/episode/?page=1"
-    while URL_pag != "":
+    while URL_pag != None:
         response = requests.get(URL_pag).json()
         episodios.append(response['results'])
         URL_pag = response['info']['next']
@@ -82,7 +83,7 @@ def search(request, texto):
         pass
     else:
         resultados_personaje += json_character['results']
-        while json_character['info']['next'] != '':
+        while json_character['info']['next'] != None:
             json_character = requests.get(json_character['info']['next']).json()
             resultados_personaje += json_character['results']
 
@@ -93,7 +94,7 @@ def search(request, texto):
         pass
     else:
         resultados_ubicacion += json_location['results']
-        while json_location['info']['next'] != '':
+        while json_location['info']['next'] != None:
             json_location = requests.get(json_location['info']['next']).json()
             resultados_ubicacion += json_location['results']
 
@@ -104,7 +105,7 @@ def search(request, texto):
         pass
     else:
         resultados_episodio += json_episode['results']
-        while json_episode['info']['next'] != '':
+        while json_episode['info']['next'] != None:
             json_episode = requests.get(json_episode['info']['next']).json()
             resultados_episodio += json_episode['results']
     return render(request, 'search.html', {"lista_personajes": resultados_personaje, "lista_episodios": resultados_episodio, "lista_ubicaciones": resultados_ubicacion},)
